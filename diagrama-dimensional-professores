@@ -1,0 +1,75 @@
+# 🎓 Modelo Dimensional - Star Schema: Análise de Professores
+
+Este projeto foi desenvolvido como parte de uma atividade acadêmica com o objetivo de construir um **modelo dimensional em estrela (Star Schema)** para análise de dados relacionados a professores em uma instituição de ensino.
+
+## 📌 Objetivo
+
+Criar um esquema de banco de dados voltado para **análise de professores**, considerando os cursos ministrados, disciplinas, departamentos e datas de oferta. O modelo foi construído com base em um diagrama relacional previamente disponibilizado.
+
+## 🧠 Foco da Análise
+
+O **objeto de análise** é o professor. A tabela fato centraliza os dados de vínculo entre professor, disciplina, curso, departamento e data de oferta. Dados sobre alunos foram propositalmente excluídos conforme orientação da atividade.
+
+## 🗂️ Estrutura do Modelo
+
+### 🟨 Tabela Fato: `FatoProfessor`
+Contém os registros de atividades dos professores, com medidas como carga horária e quantidade de disciplinas ministradas.
+
+- `idFatoProfessor` (PK)
+- `idProfessor` (FK)
+- `idCurso` (FK)
+- `idDepartamento` (FK)
+- `idDisciplina` (FK)
+- `idDataOferta` (FK)
+- `cargaHoraria`
+- `qtdDisciplinasMinistradas`
+
+### 🟦 Tabelas Dimensão
+
+#### `DimProfessor`
+- `idProfessor` (PK)
+- `nomeProfessor`
+- `titulacao`
+- `tempoInstituicao`
+
+#### `DimCurso`
+- `idCurso` (PK)
+- `nomeCurso`
+- `nivelCurso`
+- `modalidade`
+
+#### `DimDepartamento`
+- `idDepartamento` (PK)
+- `nomeDepartamento`
+- `campus`
+- `coordenador`
+
+#### `DimDisciplina`
+- `idDisciplina` (PK)
+- `nomeDisciplina`
+- `areaConhecimento`
+- `nivelDisciplina`
+
+#### `DimData`
+- `idDataOferta` (PK)
+- `dataOferta`
+- `ano`
+- `semestre`
+- `trimestre`
+- `mes`
+
+## 🔗 Relacionamentos
+
+Todas as dimensões estão ligadas à tabela fato por meio de relacionamentos **1:N**, representando que cada entidade da dimensão pode estar associada a múltiplos registros na tabela fato.
+
+## 🛠️ Ferramenta Utilizada
+
+- **MySQL Workbench** para modelagem visual do banco de dados.
+
+## 📚 Observações
+
+- O modelo foi construído com base em um diagrama relacional fornecido pela professora.
+- A granularidade da dimensão de datas foi definida para permitir análises por ano, semestre, trimestre e mês.
+- O projeto não contempla dados de alunos, conforme instrução da atividade.
+
+---
